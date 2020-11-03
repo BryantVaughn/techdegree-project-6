@@ -2,9 +2,10 @@
 const startBtn = document.querySelector('.btn__reset');
 const keyboard = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
+const lives = document.querySelectorAll('.tries');
 
 // Initialize variables
-let missed = 0;
+let missed;
 const phrases = [
 	'Accidentally on purpose',
 	'A friend in need is a friend indeed',
@@ -18,6 +19,7 @@ const phrases = [
 
 // Event Listeners
 startBtn.addEventListener('click', (evt) => {
+	initializeGame();
 	const overlay = startBtn.parentNode;
 	overlay.style.display = 'none';
 	const phraseArray = getRandomPhraseAsArray(phrases);
@@ -36,6 +38,36 @@ keyboard.addEventListener('click', (evt) => {
 	}
 });
 
+function initializeGame() {
+	missed = 0;
+	initializePhrase();
+	initializeKeyboard();
+	initializeLives();
+}
+
+function initializePhrase() {
+	while (phrase.firstElementChild) {
+		phrase.removeChild(phrase.firstElementChild);
+	}
+}
+
+function initializeKeyboard() {
+	const keyrows = keyboard.children;
+	for (let keyrow of keyrows) {
+		const letters = keyrow.children;
+		for (let letter of letters) {
+			letter.classList.remove('chosen');
+			letter.disabled = false;
+		}
+	}
+}
+
+function initializeLives() {
+	for (let life of lives) {
+		life.firstElementChild.src = 'images/liveHeart.png';
+	}
+}
+
 function checkWin() {
 	if (missed >= 5) displayOverlay('lose');
 	else {
@@ -53,9 +85,7 @@ function displayOverlay(className) {
 }
 
 function updateLives() {
-	const tries = document.querySelectorAll('.tries');
-
-	const lifeImage = tries[missed].firstElementChild;
+	const lifeImage = lives[missed].firstElementChild;
 	lifeImage.src = 'images/lostHeart.png';
 	missed++;
 }
