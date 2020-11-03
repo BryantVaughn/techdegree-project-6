@@ -2,6 +2,7 @@
 const startBtn = document.querySelector('.btn__reset');
 const keyboard = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
+const tries = document.querySelectorAll('.tries');
 
 // Initialize variables
 let missed = 0;
@@ -24,6 +25,17 @@ startBtn.addEventListener('click', (evt) => {
 	addPhraseToDisplay(phraseArray);
 });
 
+keyboard.addEventListener('click', (evt) => {
+	const { target } = evt;
+	if (target.tagName === 'BUTTON') {
+		target.classList.add('chosen');
+		target.disabled = true;
+		const selectedLetter = target.textContent;
+		const letterFound = checkLetter(selectedLetter);
+		if (!letterFound) missed++;
+	}
+});
+
 /*
  * getRandomPhraseAsArray function
  * This functions randomly selects a phrase from the phrases
@@ -43,11 +55,14 @@ function addPhraseToDisplay(characterArr) {
 
 function checkLetter(selectedLetter) {
 	const letters = document.querySelectorAll('.letter');
+	let matchingLetter = null;
 	for (let letter of letters) {
 		if (letter.textContent.toLowerCase() === selectedLetter) {
-			console.log(letter);
+			matchingLetter = selectedLetter;
+			letter.classList.add('show');
 		}
 	}
+	return matchingLetter;
 }
 
 function appendCharacterLi(character) {
@@ -60,6 +75,8 @@ function createCharacterLi(character) {
 	li.textContent = character;
 	if (!(character === ' ')) {
 		li.classList.add('letter');
+	} else {
+		li.classList.add('space');
 	}
 	return li;
 }
