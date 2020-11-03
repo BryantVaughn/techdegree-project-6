@@ -108,8 +108,10 @@ function checkWin() {
  * overlay by applying the classname.
  */
 function displayOverlay(className) {
+	const classes = ['win', 'lose'];
 	const overlay = startBtn.parentNode;
 	startBtn.textContent = 'Play Again';
+	overlay.classList.remove(...classes);
 	overlay.classList.add(className);
 	overlay.style.display = '';
 }
