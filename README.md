@@ -4,4 +4,4 @@ This is the 6th project of the Treehouse Techdegree to practice with JavaScript.
 
 ### Challenges
 
-My biggest challenges with this project was code layout and keeping the code DRY. I tried utilizing functions to keep everything modular, but had some trouble deciding how to structure all functions.
+My biggest challenges with this project were code layout and keeping the code DRY. I tried utilizing functions to keep everything modular, but had some trouble deciding how to structure all functions.
