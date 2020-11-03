@@ -2,7 +2,6 @@
 const startBtn = document.querySelector('.btn__reset');
 const keyboard = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
-const tries = document.querySelectorAll('.tries');
 
 // Initialize variables
 let missed = 0;
@@ -32,9 +31,17 @@ keyboard.addEventListener('click', (evt) => {
 		target.disabled = true;
 		const selectedLetter = target.textContent;
 		const letterFound = checkLetter(selectedLetter);
-		if (!letterFound) missed++;
+		if (!letterFound) updateLives();
 	}
 });
+
+function updateLives() {
+	const tries = document.querySelectorAll('.tries');
+
+	const lifeImage = tries[missed].firstElementChild;
+	lifeImage.src = 'images/lostHeart.png';
+	missed++;
+}
 
 /*
  * getRandomPhraseAsArray function
