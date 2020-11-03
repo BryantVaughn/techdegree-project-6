@@ -109,6 +109,7 @@ function checkWin() {
  */
 function displayOverlay(className) {
 	const overlay = startBtn.parentNode;
+	startBtn.textContent = 'Play Again';
 	overlay.classList.add(className);
 	overlay.style.display = '';
 }
