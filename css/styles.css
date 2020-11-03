@@ -148,7 +148,7 @@ button {
 }
 
 .start a {
-	color: var(--color-accent);
+	color: var(--color-start);
 }
 
 .win {
