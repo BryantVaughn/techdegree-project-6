@@ -34,7 +34,9 @@ keyboard.addEventListener('click', (evt) => {
 		const selectedLetter = target.textContent;
 		const letterFound = checkLetter(selectedLetter);
 		if (!letterFound) updateLives();
-		checkWin();
+		setTimeout(() => {
+			checkWin();
+		}, 500);
 	}
 });
 

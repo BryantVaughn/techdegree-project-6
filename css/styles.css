@@ -7,6 +7,7 @@
 	--color-win: #78cf82;
 	--color-lose: #d94545;
 	--color-start: #5b85b7;
+	--color-accent: #1e8feb;
 	--color-neutral: #445069;
 	--color-neutral-light: #d2d2d2;
 	--color-keys: #37474f;
@@ -96,7 +97,7 @@ button {
 
 .show {
 	color: #fff;
-	background-color: #1e8feb;
+	background-color: var(--color-accent);
 	transition: 0.5s ease-in;
 }
 
@@ -147,7 +148,7 @@ button {
 }
 
 .start a {
-	color: var(--color-win);
+	color: var(--color-accent);
 }
 
 .win {
