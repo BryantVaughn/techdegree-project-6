@@ -32,8 +32,25 @@ keyboard.addEventListener('click', (evt) => {
 		const selectedLetter = target.textContent;
 		const letterFound = checkLetter(selectedLetter);
 		if (!letterFound) updateLives();
+		checkWin();
 	}
 });
+
+function checkWin() {
+	if (missed >= 5) displayOverlay('lose');
+	else {
+		const shownLetters = document.querySelectorAll('.show');
+		const totalLetters = document.querySelectorAll('.letter');
+
+		if (shownLetters.length === totalLetters.length) displayOverlay('win');
+	}
+}
+
+function displayOverlay(className) {
+	const overlay = startBtn.parentNode;
+	overlay.classList.add(className);
+	overlay.style.display = '';
+}
 
 function updateLives() {
 	const tries = document.querySelectorAll('.tries');
